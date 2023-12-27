@@ -45,7 +45,7 @@ const registeredUser = async (req, res, next) => {
 
         res.status(200).json({
             status: "SUCCESS",
-            message: "User registered successfully",
+            message: "You are Registered Successfully",
             jwtToken,
             recruiterName: user.name
         })
@@ -66,22 +66,22 @@ const loginUser = async (req, res, next) => {
         if (user) {
             const passwordMatch = await bcrypt.compare(password, user.password);
             if (passwordMatch) {
-                const jwtToken = jwt.sign(user.toJSON(), process.env.JWT_SECRET, { expiresIn: 60 * 60 }) // 1 hour
+                const jwtToken = jwt.sign(user.toJSON(), process.env.JWT_SECRET, { expiresIn: 15 }) // 1 hour
                 res.status(200).json({
                     status: "SUCCESS",
                     recruiterName: user.name,
-                    message: "User login successfully",
+                    message: "You are Logged In Successfully",
                     jwtToken
                 })
             }
             else {
                 res.status(400);
-                next(new Error("Invalid email or password"));
+                next(new Error("Invalid credentials"));
             }
         }
         else {
             res.status(400);
-            next(new Error("Invalid email or password"));
+            next(new Error("Invalid credentials"));
 
         }
     } catch (error) {
