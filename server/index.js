@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const errorHandler  = require('./middleware/errorMiddleware');
-require("dotenv").config({path:".env"});
+require("dotenv").config();
 const cors = require("cors");
 
 const app = express();
