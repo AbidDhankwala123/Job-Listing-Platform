@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const errorHandler  = require('./middleware/errorMiddleware');
+const errorHandler = require('./middleware/errorMiddleware');
 require("dotenv").config();
 const cors = require("cors");
 
@@ -9,13 +9,12 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(cors());
-// app.use(cors({
-//     origin: process.env.FRONTEND_DOMAIN, // Update with your frontend domain
-//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//     credentials: true,
-//     optionsSuccessStatus: 204,
-// }));
+app.use(cors({
+    origin: [process.env.FRONTEND_URL],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
+}))
 
 app.use("/", require("./routes/userRoutes"));
 app.use("/api/jobs", require("./routes/jobsRoutes"));
