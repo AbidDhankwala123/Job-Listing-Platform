@@ -1,8 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { checkHealth, getUsers, registeredUser, loginUser } = require("../controllers/userController")
-
-router.get("/health", checkHealth);
+const { getUsers, registeredUser, loginUser } = require("../controllers/userController")
 
 router.get("/", getUsers);
 

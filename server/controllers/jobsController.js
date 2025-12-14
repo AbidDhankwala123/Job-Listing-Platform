@@ -1,5 +1,6 @@
 const Job = require("../models/jobs");
 const mongoose = require("mongoose");
+const AppError = require("../utils/AppError");
 
 const getJobs = async (req, res, next) => {
     try {
@@ -9,7 +10,7 @@ const getJobs = async (req, res, next) => {
             jobs
         })
     } catch (error) {
-        next(new Error(error.message));
+        next(error);
     }
 }
 /*
@@ -32,9 +33,8 @@ const createJob = async (req, res, next) => {
         const { companyName, companyLogoURL, jobPosition, salary, jobType, remote, location, jobDescription, aboutCompany, skillsRequired, information } = req.body;
 
         if (!companyName || !companyLogoURL || !jobPosition || !salary || !jobType || !remote || !location || !jobDescription || !aboutCompany || !skillsRequired || !information) {
-            res.status(400);
-            next(new Error("All fields are required"));
-            return;
+            return next(new AppError("All fields are required", 400));
+
         }
         await Job.create({ companyName, companyLogoURL, jobPosition, salary, jobType, remote, location, jobDescription, aboutCompany, skillsRequired: skillsRequired.split(",").map(skill => skill.trim()), information });
         res.json({
@@ -53,7 +53,7 @@ const createJob = async (req, res, next) => {
             information
         })
     } catch (error) {
-        next(new Error(error.message));
+        next(error);
     }
 
 }
@@ -72,7 +72,7 @@ const updateJob = async (req, res, next) => {
             job
         })
     } catch (error) {
-        next(new Error(error.message));
+        next(error);
     }
 
 }
@@ -103,7 +103,7 @@ const getJobBySkillsAndJobTitle = async (req, res, next) => {
             })
         }
     } catch (error) {
-        next(new Error(error.message));
+        next(error);
     }
 
 
@@ -114,15 +114,13 @@ const getJobById = async (req, res, next) => {
         const { id } = req.params;
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            res.status(400);
-            return next(new Error("Invalid ID format"));
+            return next(new AppError("Invalid ID format", 400));
         }
 
         const job = await Job.findById(id);
 
         if (!job) {
-            res.status(404);
-            return next(new Error("Job not found"));
+            return next(new AppError("Job not found", 404));
         }
 
         res.json({
@@ -130,8 +128,7 @@ const getJobById = async (req, res, next) => {
             job
         });
     } catch (error) {
-        console.log(error);
-        next(new Error(error.message));
+        next(error);
     }
 }
 

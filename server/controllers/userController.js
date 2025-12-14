@@ -1,15 +1,7 @@
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
-const checkHealth = (req,res) => {
-    res.status(200).json({
-        server: req.headers.host,
-        service:"Job Listing Platform",
-        status:"ACTIVE",
-        time:new Date(),
-    })
-}
+const AppError = require("../utils/AppError");
 
 const getUsers = async (req, res, next) => {
     try {
@@ -19,7 +11,7 @@ const getUsers = async (req, res, next) => {
             users
         })
     } catch (error) {
-        next(new Error(error.message));
+        next(error);
     }
 }
 
@@ -27,18 +19,16 @@ const registeredUser = async (req, res, next) => {
     try {
         const { name, email, password, mobile } = req.body;
         if (!name || !email || !password || !mobile) {
-            res.status(400);
-            next(new Error("All fields are required"));
+            return next(new AppError("All fields are required", 400));
+
         }
         const existingUser = await User.findOne({ email });
         if (existingUser) {
-            res.status(400);
-            next(new Error("User already exists"));
+            return next(new AppError("User already exists", 400));
         }
 
         const encryptedPassword = await bcrypt.hash(password, 10)
         await User.create({ name, email, password: encryptedPassword, mobile })
-        
 
         const user = await User.findOne({ email });
         const jwtToken = jwt.sign(user.toJSON(), process.env.JWT_SECRET, { expiresIn: 60 * 60 }) // 1 hour
@@ -50,7 +40,8 @@ const registeredUser = async (req, res, next) => {
             recruiterName: user.name
         })
     } catch (error) {
-        next(new Error(error.message));
+        next(error);
+
     }
 
 }
@@ -59,14 +50,13 @@ const loginUser = async (req, res, next) => {
     try {
         const { email, password } = req.body;
         if (!email || !password) {
-            res.status(400);
-            next(new Error("All fields are required"));
+            return next(new AppError("User already exists", 400));
         }
         const user = await User.findOne({ email });//user is mongoose object or mongodb object,so we need to convert it into json
         if (user) {
             const passwordMatch = await bcrypt.compare(password, user.password);
             if (passwordMatch) {
-                const jwtToken = jwt.sign(user.toJSON(), process.env.JWT_SECRET, { expiresIn: 60 * 30 }) // 30 minutes
+                const jwtToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: 60 * 30 }) // 30 minutes
                 res.status(200).json({
                     status: "SUCCESS",
                     recruiterName: user.name,
@@ -75,19 +65,16 @@ const loginUser = async (req, res, next) => {
                 })
             }
             else {
-                res.status(400);
-                next(new Error("Invalid credentials"));
+                return next(new AppError("Invalid credentials", 400));
             }
         }
         else {
-            res.status(400);
-            next(new Error("Invalid credentials"));
-
+            return next(new AppError("You are not register user", 400));
         }
     } catch (error) {
-        next(new Error(error.message));
-    }
+        next(error);
 
+    }
 }
 
-module.exports = {checkHealth, getUsers, registeredUser, loginUser }
+module.exports = { getUsers, registeredUser, loginUser }
