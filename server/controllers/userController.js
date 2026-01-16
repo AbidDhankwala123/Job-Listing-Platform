@@ -31,7 +31,7 @@ const registeredUser = async (req, res, next) => {
         await User.create({ name, email, password: encryptedPassword, mobile })
 
         const user = await User.findOne({ email });
-        const jwtToken = jwt.sign(user.toJSON(), process.env.JWT_SECRET, { expiresIn: 60 * 60 }) // 1 hour
+        const jwtToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: 60 * 60 }) // 1 hour
 
         res.status(200).json({
             status: "SUCCESS",
