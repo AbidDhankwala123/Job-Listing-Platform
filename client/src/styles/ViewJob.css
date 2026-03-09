@@ -1,0 +1,98 @@
+.viewjob-container {
+    min-height: 100vh;
+    background: #FFEFEF;
+}
+
+.jobdescription-summary {
+    width: 1000px;
+    height: 100px;
+    background-color: white;
+    position: relative;
+    bottom: 40px;
+    left: 120px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 4px 23px 2px rgba(0, 0, 0, 0.10);
+}
+
+.jobdescription-summary>p {
+    width: 730px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: "DM Sans";
+    font-size: 23px;
+}
+
+.jobdescription {
+    position: relative;
+    left: 120px;
+    width: 1000px;
+    background-color: white;
+    padding: 20px;
+    bottom: 20px;
+    box-shadow: 0px 2px 35px 1px rgba(0, 0, 0, 0.10);
+}
+
+.jobdescription-time {
+    display: flex;
+    gap: 15px;
+}
+
+.jobdescription-time>span,
+.stipend,
+.duration {
+    color: #999;
+    font-family: "DM Sans";
+}
+
+.stipend,
+.duration {
+    margin-left: 10px;
+}
+
+.companyname-text {
+    font-family: "DM Sans";
+    font-weight: 700;
+    font-size: 48px;
+}
+
+.editjob-btn {
+    font-family: "DM Sans";
+    width: 100px;
+    height: 35px;
+    font-weight: 700;
+    border: none;
+    border-radius: 7px;
+    color: white;
+    background: #FF6B6B;
+}
+
+.location {
+    font-family: "DM Sans";
+    color: #FF6B6B;
+    font-weight: 700;
+}
+
+.salary,
+.duration-time {
+    color: #595959;
+    font-family: "DM Sans";
+    margin-top: 5px;
+}
+
+.skills-div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.skills {
+    border-radius: 21px;
+    background: #FEE;
+    padding: 10px;
+    color: #595959;
+    font-family: "DM Sans";
+}

@@ -1,0 +1,98 @@
+.addjob-container {
+    height: 100vh;
+    display: flex;
+}
+
+.wallpaper-container {
+    width: 40vw;
+    background: url("../assets/WallpaperDog.png") center/cover no-repeat;
+}
+
+.wallpaper-container>p {
+    color: white;
+    font-family: "DM Sans";
+    font-size: 25px;
+    position: absolute;
+    top: 20px;
+    right: 70px;
+}
+
+.addjob-form {
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 50px;
+}
+
+.job-input,
+.job-description,
+.about-company,
+.dropdown {
+    width: 438px;
+    padding-left: 10px;
+    border-radius: 5px;
+    border: 2px solid #C2C2C2;
+    font-family: "DM Sans";
+}
+
+.job-input {
+    height: 30px;
+}
+
+.job-description,
+.about-company {
+    padding-top: 10px;
+    height: 50px;
+    resize: none;
+}
+
+.dropdown {
+    position: relative;
+    right: 318px;
+    width: 120px;
+    height: 30px;
+}
+
+.btns {
+    cursor: pointer;
+    width: 100px;
+    height: 30px;
+    border-radius: 6px;
+    font-family: "Roboto", sans-serif;
+    border: none;
+}
+
+.cancel-btn {
+    border: 1px solid #CECECE;
+    color: #C2C2C2;
+}
+
+.addjob-btn {
+    color: #FFF;
+    background: #ED5353;
+}
+
+form>div {
+    margin-bottom: 10px;
+}
+
+.btns-container {
+    display: flex;
+    justify-content: end;
+    gap: 20px;
+}
+
+.addjob-form>form>div>span,
+h2 {
+    font-family: "DM Sans";
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+.addform-div {
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,0 +1,71 @@
+.login-container {
+    height: 100vh;
+    display: flex;
+}
+
+.left-container {
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    left: 50px;
+}
+
+
+
+.have-account {
+    color: #000;
+    font-size: 30px;
+}
+
+.job-finder-text {
+    color: #525252;
+
+}
+
+.eye {
+    position: relative;
+    right: 50px;
+    color: red;
+
+}
+
+.job-finder-text,
+.have-account,
+.form-input {
+    font-family: "DM Sans";
+    line-height: 35px;
+}
+
+.form-input {
+    padding: 10px;
+    color: #525252;
+    width: 500px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid #C2C2C2;
+}
+
+.form>button {
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    background: #ED5353;
+    color: #FFF;
+    font-family: "DM Sans";
+    padding: 0.5rem 3rem;
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.no-account {
+    color: #525252;
+    font-family: "DM Sans";
+    margin-right: 10px;
+}
+
+.no-account-div {
+    margin-top: 10px;
+}

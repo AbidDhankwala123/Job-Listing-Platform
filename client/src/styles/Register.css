@@ -1,0 +1,10 @@
+.register-container {
+    height: 100vh;
+    display: flex;
+}
+
+.checked {
+    color: #525252;
+    font-family: "DM Sans";
+    margin-left: 10px;
+}

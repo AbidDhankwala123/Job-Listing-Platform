@@ -1,0 +1,54 @@
+.header-container {
+    background: url("../assets/header.png") center/cover no-repeat;
+    border-radius: 0 0 30px 30px;
+    height: 20vh;
+    padding: 30px;
+}
+
+.jobfinder-text {
+    color: #FFF;
+    font-family: "DM Sans";
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.jobfinder-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-btn,
+.register-btn {
+    cursor: pointer;
+    font-family: "DM Sans";
+    width: 100px;
+    height: 35px;
+    font-size: 20px;
+    border-radius: 7px;
+    border: 2px solid #FFF;
+}
+
+.login-btn {
+    color: white;
+    background: #FF6B6B;
+}
+
+.register-btn {
+    color: #FF6B6B;
+    background-color: white;
+}
+.logout-text,.recruiter-text{
+    font-family: "DM Sans";
+    font-size: 20px;
+    color: white;
+}
+.logout-text{
+    cursor: pointer;
+}
+.recruiter-img{
+    position: relative;
+    bottom: 7px;
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+}

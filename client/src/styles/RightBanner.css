@@ -1,0 +1,13 @@
+.right-container {
+    width: 40vw;
+    background: url("../assets/image\ 466.png") center/cover no-repeat;
+}
+
+.right-container>p {
+    color: white;
+    font-family: "DM Sans";
+    font-size: 25px;
+    position: absolute;
+    top: 20px;
+    right: 100px;
+}
